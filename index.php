@@ -12,24 +12,18 @@ require './connection.php';
 <body>
 <main>
     <br>
-    <hr>
-        <section>
-            <label for="">Entry Type:  </label>
-            <select name="dropdown" id="dropdown" aria-placeholder="expense">
-             <option value="">Option 1</option>
-             <option value="">Option 2</option>
-            </select>
-        </section>
-        <br><hr>
-        <section>
-            <form action="">
-                <label for="">Name:  </label>
-                <input type="text" name="name" required><br><br>
-                <label for="">Amount:  </label>
-                <input type="text" name="Amount" required><br><br>
-                <button type="submit" name="submit">Add Expense</button>
-            </form>
-        </section>
+<hr>
+<form action="add_expenses.php" method="POST">
+    <button>Add</button>
+</form>
+<form action="">
+    <button>Edit/Delete</button>
+</form>
+<form action="">
+    <button>View table</button>
+</form>
+<hr>
+   
     </main>
 </body>
 </html>

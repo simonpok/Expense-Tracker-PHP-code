@@ -12,5 +12,5 @@ if(!$conn){
 }else{
     echo"Connection hogaya!";
 }
-
+"<hr/>"
 ?>
