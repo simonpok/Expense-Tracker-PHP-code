@@ -13,6 +13,7 @@ require './connection.php';
     <main>
     <h2>Add an expenses:</h2>
         <section>
+        <form action="add_expenses.php" method="POST">
             <label for="">Entry Type:  </label>
             <select name="dropdown" id="dropdown" placeholder="expense">
           <?php 
@@ -28,8 +29,8 @@ require './connection.php';
             </select>
         </section>
         <br><br>
-        <section>
-            <form action="">
+       
+            
                 <label for="">Name:  </label>
                 <input type="text" name="name" required><br><br>
                 <label for="">Amount:  </label>
@@ -37,7 +38,35 @@ require './connection.php';
                 <button type="submit" name="submit">Add Expense</button>
             </form>
             <hr>
-        </section>
+        
+        <?php 
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $id = $_POST["dropdown"];
+            $name = $_POST["name"];
+            $amount = $_POST["Amount"];
+
+            $sql = "INSERT INTO expenses (id, title, amount) VALUES (?,?,?)";
+
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bind_param("sss", $id, $name, $amount);
+
+            if($stmt->execute()){
+                echo "Recorded!";
+                header("Location: ./index.php");
+                exit();
+            }else{
+                echo "Error!".$sql."<br>".$stmt->error;
+            }
+            $stmt->close();
+        }
+
+        
+        ?>
+        
+
+
     </main>
     
 </body>
