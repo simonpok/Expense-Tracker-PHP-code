@@ -16,7 +16,7 @@ require './connection.php';
 <form action="add_expenses.php" method="POST">
     <button>Add</button>
 </form><br>
-<form action="">
+<form action="edit-delete.php" method="POST">
     <button>Edit/Delete</button><br>
 </form><br>
 <form action="view.php" method="POST">
