@@ -39,6 +39,8 @@ require './connection.php';
                 <input type="text" name="name" required><br><br>
                 <label for="">Amount:  </label>
                 <input type="text" name="Amount" required><br><br>
+                <label for="">Description: </label>
+                <input type="text" name="description"><br><br>
                 <button type="submit" name="submit">Add Expense</button>
             </form>
             <hr>
@@ -49,12 +51,13 @@ require './connection.php';
             $category_id = $_POST["dropdown"];
             $name = $_POST["name"];
             $amount = $_POST["Amount"];
+            $description = $_POST["description"];
 
-            $sql = "INSERT INTO expenses (category_id, title, amount) VALUES (?,?,?)";
+            $sql = "INSERT INTO expenses (category_id, title, amount, description) VALUES (?,?,?,?)";
 
             $stmt = $conn->prepare($sql);
 
-            $stmt->bind_param("sss", $category_id, $name, $amount);
+            $stmt->bind_param("ssss", $category_id, $name, $amount,$description);
 
             if($stmt->execute()){
                 echo "Recorded!";

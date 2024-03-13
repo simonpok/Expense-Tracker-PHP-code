@@ -32,8 +32,8 @@ if($result->num_rows>0 ){
 
     while($row=$result->fetch_assoc())
     {
-        echo "|| category: ".$row["label"]." || "."Amount: ".$row["amount"]." || ".
-        "description: ".$row["description"]." || "."date: ".$row["updated_at"]. "<br>";
+        echo "|| Category: ".$row["label"]." || Item Name: ".$row["title"]." || "."Amount: ".$row["amount"]." || ".
+        "Description: ".$row["description"]." || "."Date: ".$row["updated_at"]. "<hr>   <br><br>";
 
     }
 }

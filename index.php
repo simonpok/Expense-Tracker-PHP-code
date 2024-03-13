@@ -11,14 +11,14 @@ require './connection.php';
 </head>
 <body>
 <main>
-    <br>
+<h1>Expenses Tracker CRUD</h1>
 <hr>
 <form action="add_expenses.php" method="POST">
     <button>Add</button>
-</form>
+</form><br>
 <form action="">
-    <button>Edit/Delete</button>
-</form>
+    <button>Edit/Delete</button><br>
+</form><br>
 <form action="view.php" method="POST">
     <button>View table</button>
 </form>
