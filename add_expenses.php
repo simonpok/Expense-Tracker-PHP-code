@@ -10,12 +10,16 @@ require './connection.php';
     <title>Add</title>
 </head>
 <body>
+    <hr>
+    <hr>
     <main>
     <h2>Add an expenses:</h2>
+    <hr>
+    
         <section>
         <form action="add_expenses.php" method="POST">
             <label for="">Entry Type:  </label>
-            <select name="dropdown" id="dropdown" placeholder="expense">
+            <select name="dropdown" placeholder="expense">
           <?php 
              
              $categories = mysqli_query($conn,"SELECT * FROM categories"); //establish connection to db table
@@ -42,15 +46,15 @@ require './connection.php';
         <?php 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $id = $_POST["dropdown"];
+            $category_id = $_POST["dropdown"];
             $name = $_POST["name"];
             $amount = $_POST["Amount"];
 
-            $sql = "INSERT INTO expenses (id, title, amount) VALUES (?,?,?)";
+            $sql = "INSERT INTO expenses (category_id, title, amount) VALUES (?,?,?)";
 
             $stmt = $conn->prepare($sql);
 
-            $stmt->bind_param("sss", $id, $name, $amount);
+            $stmt->bind_param("sss", $category_id, $name, $amount);
 
             if($stmt->execute()){
                 echo "Recorded!";

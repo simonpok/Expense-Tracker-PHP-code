@@ -19,7 +19,7 @@ require './connection.php';
 <form action="">
     <button>Edit/Delete</button>
 </form>
-<form action="">
+<form action="view.php" method="POST">
     <button>View table</button>
 </form>
 <hr>
