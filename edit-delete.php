@@ -1,4 +1,4 @@
-<?php 
+<?php
 require('./connection.php');
 
 // Function to sanitize input
@@ -64,12 +64,12 @@ if(isset($_POST['delete_expense'])) {
                     </thead>
                     <tbody>
                         <?php
-                            $sql ="select * from categories inner join 
-                                    expenses on categories.id=expenses.category_id";
-                            $result=$conn->query($sql);
+                            $sql ="SELECT * FROM categories INNER JOIN 
+                                    expenses ON categories.id = expenses.category_id";
+                            $result = $conn->query($sql);
 
-                            if($result->num_rows > 0 ) {
-                                while($row=$result->fetch_assoc()) {
+                            if($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>".$row["id"]."</td>";
                                     echo "<td>".$row["label"]."</td>";
@@ -78,10 +78,10 @@ if(isset($_POST['delete_expense'])) {
                                     echo "<td>".$row["description"]."</td>";
                                     echo "<td>".$row["updated_at"]."</td>";
                                     echo "<td>
-                                            <a href='edit_expense.php?id=".$row["id"]."'>Edit</a>
+                                            <a href='edit.php?id=".urlencode(sanitize($row["id"]))."'>Edit</a>
                                             |
-                                            <form method='post' onsubmit='return confirm(\"Are you sure you want to delete this expense?\");'>
-                                                <input type='hidden' name='delete_id' value='".$row["id"]."'>
+                                            <form method='post' name='delete_form'>
+                                                <input type='hidden' name='delete_id' value='".sanitize($row["id"])."'>
                                                 <input type='submit' name='delete_expense' value='Delete'>
                                             </form>
                                         </td>";
@@ -96,5 +96,20 @@ if(isset($_POST['delete_expense'])) {
             </form>
         </section>
     </main>
+
+    <script>
+        // Add JavaScript for confirmation before deleting
+        document.addEventListener('DOMContentLoaded', function() {
+            var deleteForms = document.querySelectorAll('form[name="delete_form"]');
+            deleteForms.forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    var confirmation = confirm("Are you sure you want to delete this expense?");
+                    if (!confirmation) {
+                        event.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
